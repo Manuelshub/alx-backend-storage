@@ -14,6 +14,6 @@ def update_topics(mongo_collection, name, topics):
         topics(list of strings): list of topics
     """
     return mongo_collection.find_one_and_update(
-        { "name": name },
-        { "$set": { "topics": topics} }
-    );
+        {"name": name},
+        {"$set": {"topics": topics}}
+    )
