@@ -1,0 +1,3 @@
+// This Script inserts a document in the collection school
+school = {"name": "Holberton school"};
+db.my_db.insertOne(school);
