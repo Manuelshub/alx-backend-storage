@@ -13,7 +13,7 @@ def update_topics(mongo_collection, name, topics):
         name(string): the school name to update
         topics(list of strings): list of topics
     """
-    return mongo_collection.find_one_and_update(
+    mongo_collection.find_one_and_update(
         {"name": name},
         {"$set": {"topics": topics}},
         {"multi": True}
