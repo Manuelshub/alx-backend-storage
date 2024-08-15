@@ -2,6 +2,7 @@
 """
 This module contains a Cache class
 """
+
 import redis
 from typing import Union
 import uuid
@@ -12,7 +13,7 @@ class Cache:
     This class stores an instance of the Redis client as a private variabele
     """
 
-    def __init__(self) -> None:
+    def __init__(self):
         """
         This is the initialization method for the class Cache.
 
