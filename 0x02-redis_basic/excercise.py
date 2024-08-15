@@ -35,5 +35,5 @@ class Cache:
         key = str(uuid.uuid4())
 
         # Use the Redis client to set the value of the key in the database.
-        self._redis.set(key, data)
+        self._redis.mset({key: data})
         return key
