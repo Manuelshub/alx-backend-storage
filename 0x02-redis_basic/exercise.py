@@ -4,8 +4,10 @@ This module contains a Cache class
 """
 
 import redis
-from typing import Union
+from typing import Union, Optional, Callable
 import uuid
+
+UnionTypes = Union[str, bytes, int, float]
 
 
 class Cache:
@@ -23,7 +25,7 @@ class Cache:
         # Flush the Redis database to ensure that it is empty.
         self._redis.flushdb()
 
-    def store(self, data: Union[str, bytes, int, float]) -> str:
+    def store(self, data: UnionTypes) -> str:
         """
         Store the data in Redis using a randomly generated key.
 
@@ -38,3 +40,18 @@ class Cache:
         # Use the Redis client to set the value of the key in the database.
         self._redis.set(key, data)
         return key
+    
+    def get(self, key: str, fn: Optional[Callable] = None) -> UnionTypes:
+        """
+        Retrieves a value from the Redis database by key.
+
+        Args:
+            key (str): The key to retrieve the value for.
+            fn (Optional[Callable], optional): An optional function to apply to the retrieved value. Defaults to None.
+
+        Returns:
+            UnionTypes: The retrieved value, or the result of applying the function to the value if a function was provided.
+        """
+        if fn:
+            return fn(self._redis.get(key))
+        return self._redis.get(key)
