@@ -16,7 +16,7 @@ class Cache:
         """
         This is the initialization method for the class Cache.
 
-        It creates a Redis client and flushes the database to ensure that it is empty.
+        Creates a Redis client and flushes the database to ensure it is empty.
         """
         self.__redis = redis.Redis()
         # Flush the Redis database to ensure that it is empty.
