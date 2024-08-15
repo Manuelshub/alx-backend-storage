@@ -52,6 +52,7 @@ class Cache:
         Returns:
             UnionTypes: The retrieved value, or the result of applying the function to the value if a function was provided.
         """
-        if fn:
-            return fn(self._redis.get(key))
-        return self._redis.get(key)
+        value = self._redis.get(key)
+        if fn is not None:
+            return fn(value)
+        return value
